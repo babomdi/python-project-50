@@ -1,6 +1,3 @@
-import json
-
-
 def convert_to_lower(dictionary):
     for key, value in dictionary.items():
         if isinstance(value, bool):
@@ -8,9 +5,7 @@ def convert_to_lower(dictionary):
     return dictionary
 
 
-def generate_diff(file1, file2):
-    data1 = json.load(file1)
-    data2 = json.load(file2)
+def generate_diff(data1, data2):
     data1 = convert_to_lower(data1)
     data2 = convert_to_lower(data2)
     result_string = []
