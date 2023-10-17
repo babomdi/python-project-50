@@ -1,15 +1,32 @@
-import json
+import pytest
+import os
 from gendiff.engine import generate_diff
+from gendiff.parser import parse_file
 
 
-def test_gendiff():
-    file1 = json.load(open('tests/file1.json'))
-    file2 = json.load(open('tests/file2.json'))
-    assert generate_diff(file1, file2) == '''{
-  - follow: false
-    host: hexlet.io
-  - proxy: 123.234.53.22
-  - timeout: 50
-  + timeout: 20
-  + verbose: true
-}'''
+FIXTURES = os.path.join('tests', 'fixtures')
+
+
+def get_file_path(file_name):
+    return os.path.join(FIXTURES, file_name)
+
+
+def get_exp_result(file_name):
+    fixture_path = os.path.join('tests', 'fixtures', f'{file_name}')
+    with open(fixture_path) as f:
+        return f.read()
+
+
+@pytest.mark.parametrize("file1_name, file2_name", [
+    ('file1.json', 'file2.json'),
+    ('file1.yml', 'file2.yml')
+])
+def test_generate_diff(file1_name, file2_name):
+    data1 = parse_file(get_file_path(file1_name))
+    data2 = parse_file(get_file_path(file2_name))
+    _, file_format = file1_name.split('.')
+
+    expected_result = get_exp_result(f'exp_{file_format}.txt')
+    current_result = generate_diff(data1, data2)
+
+    assert current_result == expected_result

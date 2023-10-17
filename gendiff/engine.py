@@ -32,6 +32,6 @@ def generate_diff(data1, data2):
 
     result_string = sorted(result_string, key=lambda x: x[4])
     result_string.insert(0, '{')
-    result_string.append('}')
+    result_string.append('}\n')
 
     return '\n'.join(result_string)
