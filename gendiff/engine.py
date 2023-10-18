@@ -1,3 +1,6 @@
+import itertools
+
+
 def convert_to_lower(dictionary):
     for key, value in dictionary.items():
         if isinstance(value, bool):
@@ -31,7 +34,6 @@ def generate_diff(data1, data2):
             result_string.append(string)
 
     result_string = sorted(result_string, key=lambda x: x[4])
-    result_string.insert(0, '{')
-    result_string.append('}\n')
+    result_string = itertools.chain('{', result_string, '}')
 
     return '\n'.join(result_string)

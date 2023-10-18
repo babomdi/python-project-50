@@ -14,7 +14,7 @@ def get_file_path(file_name):
 def get_exp_result(file_name):
     fixture_path = os.path.join('tests', 'fixtures', f'{file_name}')
     with open(fixture_path) as f:
-        return f.read()
+        return f.read().rstrip('\n')
 
 
 @pytest.mark.parametrize("file1_name, file2_name", [
