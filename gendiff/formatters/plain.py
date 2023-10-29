@@ -10,24 +10,26 @@ def to_str(value):
     return str(value)
 
 
+def create_path(ancestry, name):
+    if ancestry:
+        return ancestry + '.' + name
+    return ancestry + name
+
+
 def convert_to_plain(diff):
     def walk(current_value, ancestry):
         if not isinstance(current_value, dict) and \
+           not isinstance(current_value, list) or \
+           'action' not in current_value and \
            not isinstance(current_value, list):
             return to_str(current_value)
 
         lines = []
-        if 'action' not in current_value and \
-           not isinstance(current_value, list):
-            return to_str(current_value)
-
         for d in current_value:
             name = d['key']
             action = d['action']
-            if ancestry:
-                new_ancestry = ancestry + '.' + name
-            else:
-                new_ancestry = ancestry + name
+            new_ancestry = create_path(ancestry, name)
+
             if action == 'nested':
                 lines.append(walk(d['children'], new_ancestry))
             elif action == 'added':
