@@ -1,5 +1,5 @@
 import pytest
-from gendiff.engine import generate_diff
+from gendiff.generate_diff import generate_diff
 from tests.tools import get_file_path, get_exp_result
 
 
