@@ -35,11 +35,11 @@ def for_nested(key, value1, value2):
     return {
         'action': 'nested',
         'key': key,
-        'children': diff(value1, value2)
+        'children': build_diff(value1, value2)
     }
 
 
-def diff(data1, data2):
+def build_diff(data1, data2):
     keys = sorted(data1.keys() | data2.keys())
     added = data2.keys() - data1.keys()
     deleted = data1.keys() - data2.keys()

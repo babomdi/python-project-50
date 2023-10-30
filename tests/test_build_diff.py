@@ -1,5 +1,6 @@
 from gendiff.diff import (
-    for_unmodified, for_modified, for_added, for_deleted, for_nested, diff
+    for_unmodified, for_modified, for_added,
+    for_deleted, for_nested, build_diff
 )
 import pytest
 
@@ -43,7 +44,7 @@ def test_for_nested():
     assert for_nested('key', value1, value2) == {
         'action': 'nested',
         'key': 'key',
-        'children': diff(value1, value2)
+        'children': build_diff(value1, value2)
     }
 
 
@@ -75,7 +76,7 @@ def file2():
 
 
 def test_diff(file1, file2):
-    actual_result = diff(file1, file2)
+    actual_result = build_diff(file1, file2)
     assert actual_result == [
         {
             "action": "nested",
