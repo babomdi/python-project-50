@@ -13,16 +13,24 @@ Generate difference is a program that determines the difference between two data
 
 ## Getting started:
 1. Clone the repo
-`git clone https://github.com/babomdi/python-project-50.git`
+```
+git clone https://github.com/babomdi/python-project-50.git
+```
 2. Navigate to the installed repo
-`cd python-project-50`
+```
+cd python-project-50
+```
 3. Install the package
-`poetry install`
+```
+poetry install
+```
 
 ## `usage`
 1. Put the files you want to check in the `tests/fixtures/` folder
-2. Run this command
-`gendiff tests/fixtures/your_file1 tests/fixtures/your_file2`
+2. Run this command:
+```
+gendiff tests/fixtures/your_file1 tests/fixtures/your_file2
+```
 
 ## Output formats
 To choose format add flag `-f` or `--format`.
@@ -33,11 +41,17 @@ Available formats:
 
 # Commands examples
 - stylish
-`gendiff tests/fixtures/your_file1 tests/fixtures/your_file2`
+```
+gendiff tests/fixtures/your_file1 tests/fixtures/your_file2
+```
 - plain
-`gendiff -f plain tests/fixtures/your_file1 tests/fixtures/your_file2`
+```
+gendiff -f plain tests/fixtures/your_file1 tests/fixtures/your_file2
+```
 - json
-`gendiff -f json tests/fixtures/your_file1 tests/fixtures/your_file2`
+```
+gendiff -f json tests/fixtures/your_file1 tests/fixtures/your_file2
+```
 
 ## Demo
 [![asciicast](https://asciinema.org/a/617911.svg)](https://asciinema.org/a/617911)
