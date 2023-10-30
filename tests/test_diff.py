@@ -1,51 +1,50 @@
 from gendiff.diff import (
-            for_unmodified, for_modified, for_added, for_deleted,
-            for_nested, diff
-        )
+    for_unmodified, for_modified, for_added, for_deleted, for_nested, diff
+)
 import pytest
 
 
 def test_for_unmodified():
     assert for_unmodified('key', 'value') == {
-            'action': 'unmodified',
-            'key': 'key',
-            'value': 'value'
-        }
+        'action': 'unmodified',
+        'key': 'key',
+        'value': 'value'
+    }
 
 
 def test_for_modified():
     assert for_modified('key', 'value1', 'value2') == {
-            'action': 'modified',
-            'key': 'key',
-            'old_value': 'value1',
-            'new_value': 'value2'
-        }
+        'action': 'modified',
+        'key': 'key',
+        'old_value': 'value1',
+        'new_value': 'value2'
+    }
 
 
 def test_for_added():
     assert for_added('key', 'value') == {
-            'action': 'added',
-            'key': 'key',
-            'value': 'value'
-        }
+        'action': 'added',
+        'key': 'key',
+        'value': 'value'
+    }
 
 
 def test_for_deleted():
     assert for_deleted('key', 'value') == {
-            'action': 'deleted',
-            'key': 'key',
-            'value': 'value'
-        }
+        'action': 'deleted',
+        'key': 'key',
+        'value': 'value'
+    }
 
 
 def test_for_nested():
     value1 = {'key': 'value'}
     value2 = {'wow': 'so much'}
     assert for_nested('key', value1, value2) == {
-            'action': 'nested',
-            'key': 'key',
-            'children': diff(value1, value2)
-        }
+        'action': 'nested',
+        'key': 'key',
+        'children': diff(value1, value2)
+    }
 
 
 @pytest.fixture
