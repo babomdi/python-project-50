@@ -1,20 +1,20 @@
 from gendiff.diff import (
-    for_unmodified, for_modified, for_added,
-    for_deleted, for_nested, build_diff
+    add_unmodified, add_modified, add_added,
+    add_deleted, add_nested, build_diff
 )
 import pytest
 
 
-def test_for_unmodified():
-    assert for_unmodified('key', 'value') == {
+def test_add_unmodified():
+    assert add_unmodified('key', 'value') == {
         'action': 'unmodified',
         'key': 'key',
         'value': 'value'
     }
 
 
-def test_for_modified():
-    assert for_modified('key', 'value1', 'value2') == {
+def test_add_modified():
+    assert add_modified('key', 'value1', 'value2') == {
         'action': 'modified',
         'key': 'key',
         'old_value': 'value1',
@@ -22,26 +22,26 @@ def test_for_modified():
     }
 
 
-def test_for_added():
-    assert for_added('key', 'value') == {
+def test_add_added():
+    assert add_added('key', 'value') == {
         'action': 'added',
         'key': 'key',
         'value': 'value'
     }
 
 
-def test_for_deleted():
-    assert for_deleted('key', 'value') == {
+def test_add_deleted():
+    assert add_deleted('key', 'value') == {
         'action': 'deleted',
         'key': 'key',
         'value': 'value'
     }
 
 
-def test_for_nested():
+def test_add_nested():
     value1 = {'key': 'value'}
     value2 = {'wow': 'so much'}
-    assert for_nested('key', value1, value2) == {
+    assert add_nested('key', value1, value2) == {
         'action': 'nested',
         'key': 'key',
         'children': build_diff(value1, value2)
