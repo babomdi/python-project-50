@@ -47,8 +47,7 @@ def convert_to_stylish(value, replacer=SEPARATOR, spaces_count=2):
                     f"{indent+DELETE}{key}: {walk(d['value'], depth+1)}")
             elif action == 'modified':
                 lines.append(
-                    f"{indent+DELETE}{key}: {walk(d['old_value'], depth+1)}"
-                        )
+                    f"{indent+DELETE}{key}: {walk(d['old_value'], depth+1)}")
                 lines.append(
                     f"{indent+ADD}{key}: {walk(d['new_value'], depth+1)}")
             else:
